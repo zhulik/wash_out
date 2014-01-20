@@ -11,7 +11,7 @@ module WashOutHelper
 
   def wsdl_data(xml, params)
     params.each do |param|
-      tag_name = param.name
+      tag_name = param.name == 'value' ? 'employee_data' : param.name
       param_options = wsdl_data_options(param)
 
       if !param.struct?
