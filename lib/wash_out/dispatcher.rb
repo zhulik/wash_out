@@ -37,7 +37,7 @@ module WashOut
       action_spec = self.class.soap_actions[soap_action]
 
       xml_data = env['wash_out.soap_data'].values_at(:envelope, :Envelope).compact.first
-      xml_data = xml_data.values_at(:body, :Body).compact.first
+      xml_data = xml_data.values_at(:body, :Body).compact.first || {}
 
       strip_empty_nodes = lambda{|hash|
         hash.keys.each do |key|
