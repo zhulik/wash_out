@@ -19,7 +19,7 @@ xml.definitions 'xmlns' => 'http://schemas.xmlsoap.org/wsdl/',
     end
   end
 
-  xml.portType :name => "#{@name}_port" do
+  xml.portType :name => "BasicHttpBinding_IEmployeeService" do
     @map.keys.each do |operation|
       xml.operation :name => operation do
         xml.input :message => "tns:#{operation}"
@@ -28,7 +28,7 @@ xml.definitions 'xmlns' => 'http://schemas.xmlsoap.org/wsdl/',
     end
   end
 
-  xml.binding :name => "#{@name}_binding", :type => "tns:#{@name}_port" do
+  xml.binding :name => "#{@name}_binding", :type => "tns:BasicHttpBinding_IEmployeeService" do
     xml.tag! "soap:binding", :style => 'document', :transport => 'http://schemas.xmlsoap.org/soap/http'
     @map.keys.each do |operation|
       xml.operation :name => operation do
@@ -47,8 +47,8 @@ xml.definitions 'xmlns' => 'http://schemas.xmlsoap.org/wsdl/',
     end
   end
 
-  xml.service :name => "service" do
-    xml.port :name => "#{@name}_port", :binding => "tns:#{@name}_binding" do
+  xml.service :name => "EmployeeService" do
+    xml.port :name => "BasicHttpBinding_IEmployeeService", :binding => "tns:#{@name}_binding" do
       xml.tag! "soap:address", :location => send("#{@name}_action_url")
     end
   end
