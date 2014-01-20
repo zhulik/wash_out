@@ -87,7 +87,7 @@ module WashOut
       @operation   = soap_action = request.env['wash_out.soap_action']
       @action_spec = self.class.soap_actions[soap_action]
 
-      result = { 'get_employers_result' => {'employee_data' => result} } unless result.is_a? Hash
+      result = { 'get_employers_result' => result } unless result.is_a? Hash
       result = HashWithIndifferentAccess.new(result)
 
       inject = lambda {|data, map|
